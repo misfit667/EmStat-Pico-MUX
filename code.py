@@ -7,6 +7,7 @@ import numpy as np
 import piecewise_regression
 from scipy.stats import linregress
 import matplotlib.pyplot as plt
+import multiplexermanager as mm
 
 
 '''Importing data to dataframe/array'''
