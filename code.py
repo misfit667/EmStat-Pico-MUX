@@ -1,31 +1,38 @@
 '''MODULES'''
 import time
-
-startTime_1 = time.time()
 import pandas as pd
 import numpy as np
 import piecewise_regression
 from scipy.stats import linregress
 import matplotlib.pyplot as plt
 
+'''START TIME'''
+# Measures the time at which the code is executed
+start = time.time()     
 
-'''Importing data to dataframe/array'''
-# Open file into a Pandas dataframe
+
+'''DATA IMPORT'''
 path = 'C:/Users/SLinf/Documents/GitHub/multiplexer-of-madness/'
 file = 'data.csv'
+# Opens the file into a Pandas dataframe
 df = pd.read_csv(path + file, sep = ',', header = 5, encoding = "utf16", low_memory = False)
-# Remove any null values from the dataframe
+# Removes any null values from the dataframe
 ndf = df.dropna()
-# Convert the dataframe to an array
+# Converts the dataframe into an array
 array = ndf.to_numpy().astype(float)
-np.seterr(divide = 'ignore') 
+# Supresses an error in the use of np.log()
+np.seterr(divide = 'ignore')
+
+
+'''FILE INFORMATION'''
 rows = array.shape[0]
 channels = 16
 fields = 4
 length = array.shape[1]
 experiments = length // (channels*fields)
 
-'''Changing array shape'''
+
+'''DATA PROCESSING'''
 # Convert the 2D array given by excel into a 4D array: (channel, experiment, dataset, data)
 # Note: Managed to make a 4D array, but data was placed incorrectly during reshape
 # Still need to finish this, but for now, split the 2D array into 64 columns of 2D arrays and then reshaped
@@ -88,6 +95,7 @@ for i in range(1, channels + 1): #(1-16)123456789101112131415
     plt.legend(loc='best')
     plt.show()
     plt.close()
-    
-executionTime_1 = (time.time() - startTime_1)
-print('Time to run: ' + str(executionTime_1))
+
+'''END TIME''' 
+finish = (time.time() - start)
+print('Time to run: ' + str(finish))
