@@ -5,6 +5,7 @@ import numpy as np
 import piecewise_regression
 from scipy.stats import linregress
 import matplotlib.pyplot as plt
+import multiplexermanager as mm
 
 '''START TIME'''
 # Measures the time at which the code is executed
