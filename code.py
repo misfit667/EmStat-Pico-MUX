@@ -6,24 +6,23 @@ import piecewise_regression
 from scipy.stats import linregress
 import matplotlib.pyplot as plt
 import multiplexermanager as mm
-
+import plotting as pg
+import operations as op
 
 '''START TIME'''
 # Measures the time at which the code is executed
 start = time.time()     
 
 path = 'C:/Users/SLinf/Documents/GitHub/EmStat-Pico-MUX/'
-file = 'data.csv'
-filetwo = 'test.csv'
+file = '20221017_1400_PBSpH7 ozoncleaner.csv'
+filetwo = '20221026_1400_PBS_MUA_1.csv'
 np.seterr(divide = 'ignore')
 
-array = mm.Multiplexer(path + file)
-arraytwo = mm.Multiplexer(path + filetwo)
+array = mm.Multiplexer(path + file).array
 
-values = mm.logarithm(array)
-
-mm.compare_experiments(values)
-mm.compare_channels(arraytwo.array)
+logged = mm.logarithm(array)
+bp = op.blah(logged)
+plotted = pg.compare_experiments(bp)
 
 '''END TIME''' 
 finish = (time.time() - start)
